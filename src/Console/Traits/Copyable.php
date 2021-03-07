@@ -11,7 +11,7 @@ trait Copyable
     protected function makeDirectory($folder)
     {
         if (!is_dir($folder)) {
-            mkdir($folder);
+            mkdir($folder, 0777, true);
         }
     }
 

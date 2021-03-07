@@ -41,22 +41,15 @@ class MakeApplication extends Command
      */
     public function handle()
     {
-        $domain = $this->argument('domain');
+        $application = $this->argument('application');
 
         $folders = [
-            'Actions', 'QueryBuilders', 'Collections', 'DataTransferObjects',
-            'Events', 'Exceptions', 'Listeners', 'Models', 'Rules',
-            'States', 'Observers', 'Subscribers',
+            'Controllers', 'Middlewares', 'Requests', 'Resources', 'ViewModels',
         ];
 
-        $path = base_path('src/Domain/' . $domain);
-        $this->makeDirectory($path);
-
         foreach ($folders as $folder) {
-            $path = base_path('src/Domain/' . $domain . '/' . $folder);
+            $path = base_path('src/App/' . $application . '/' . $folder);
             $this->makeDirectory($path);
         }
-
-        return 0;
     }
 }

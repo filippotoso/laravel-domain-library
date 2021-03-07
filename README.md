@@ -8,13 +8,6 @@ But I'm a lazy coder: I really don't like to write a lot of code. So, I needed a
 - PHP 7.2.5+
 - Laravel 7+
 
-## Installing
-
-Use Composer to install it:
-
-```
-composer require filippo-toso/laravel-domain-library
-```
 ## What it does?
 
 It provides:
@@ -46,7 +39,7 @@ php artisan domain:setup:structure
 composer dump-autoload
 ```
 
-This command will create a `new` src folder that will contain 3 namespaces `App`, `Domain` and `Support`.
+This command will create a new `src` folder that will contain 3 namespaces `App`, `Domain` and `Support`.
 It will also rewire the Laravel application to work with this new directory structure (ie. moving middlewares and providers, updating the bootstrap code, introducing a new Application class, and so on). Remember to dump the composer autoload in order to make the changes effective.
 
 At this point you can start building your domain driven application. Let's create the structure for a sample domain named `Invoices`

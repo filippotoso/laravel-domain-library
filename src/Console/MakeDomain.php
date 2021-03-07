@@ -49,14 +49,9 @@ class MakeDomain extends Command
             'States', 'Observers', 'Subscribers',
         ];
 
-        $path = base_path('src/Domain/' . $domain);
-        $this->makeDirectory($path);
-
         foreach ($folders as $folder) {
             $path = base_path('src/Domain/' . $domain . '/' . $folder);
             $this->makeDirectory($path);
         }
-
-        return 0;
     }
 }

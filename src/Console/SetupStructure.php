@@ -46,11 +46,11 @@ class SetupStructure extends Command
 
         $this->copyFiles();
 
+        $this->updateConfig();
+
         $this->updateBootstrap();
 
         $this->updateComposer();
-
-        return 0;
     }
 
     protected function checkSrcFolder()
@@ -75,6 +75,7 @@ class SetupStructure extends Command
             'src/Domain',
 
             'src/Support',
+            'src/Support/Controllers',
             'src/Support/Models',
             'src/Support/Middleware',
             'src/Support/Helpers',
@@ -129,6 +130,13 @@ class SetupStructure extends Command
         ], $content);
         file_put_contents(base_path('src/Support/Models/User.php'), $content);
 
+        $content = file_get_contents(base_path('app/Http/Controllers/Controller.php'));
+        $content = str_replace([
+            'namespace App\Http\Controllers;',
+        ], [
+            'namespace Support\Controllers;',
+        ], $content);
+        file_put_contents(base_path('src/Support/Controllers/Controller.php'), $content);
 
         $this->copyDirectory(base_path('app/Exceptions'), base_path('src/App/Exceptions'));
         $this->copyDirectory(base_path('app/Providers'), base_path('src/App/Providers'));
@@ -150,6 +158,21 @@ class SetupStructure extends Command
 
             file_put_contents($file, $content);
         }
+    }
+
+    protected function updateConfig()
+    {
+        $path = base_path('config/auth.php');
+
+        $content = file_get_contents($path);
+
+        $content = str_replace(
+            'App\Models\User::class',
+            'Support\Models\User::class',
+            $content
+        );
+
+        file_put_contents($path, $content);
     }
 
     protected function updateBootstrap()
