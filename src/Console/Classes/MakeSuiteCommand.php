@@ -27,7 +27,7 @@ class MakeSuiteCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Make a model, query builder, model collection and data transfer object';
+    protected $description = 'Make a model, query builder, model collection, data transfer object and states';
 
 
     protected $requirements = [
@@ -60,19 +60,6 @@ class MakeSuiteCommand extends Command
             'model' => $this->argument('model'),
         ];
 
-        $this->call('domain:make:model', [
-            'name' => $data['model'],
-            'domain' => $data['domain'],
-            'model' => $data['model'],
-            '--force' => $this->option('force'),
-        ]);
-
-        $this->call('domain:make:querybuilder', [
-            'name' => $data['model'],
-            'domain' => $data['domain'],
-            '--force' => $this->option('force'),
-        ]);
-
         $this->call('domain:make:collection', [
             'name' => $data['model'],
             'domain' => $data['domain'],
@@ -85,6 +72,19 @@ class MakeSuiteCommand extends Command
             'domain' => $data['domain'],
             'application' => $data['application'],
             'model' => $data['model'],
+            '--force' => $this->option('force'),
+        ]);
+
+        $this->call('domain:make:model', [
+            'name' => $data['model'],
+            'domain' => $data['domain'],
+            'model' => $data['model'],
+            '--force' => $this->option('force'),
+        ]);
+
+        $this->call('domain:make:querybuilder', [
+            'name' => $data['model'],
+            'domain' => $data['domain'],
             '--force' => $this->option('force'),
         ]);
 
