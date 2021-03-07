@@ -1,0 +1,10 @@
+<?php
+
+namespace Domain\{{ domain }}\States;
+
+use Spatie\ModelStates\State;
+
+abstract class {{ name }}State extends State
+{
+    // abstract public function getSomething(): string;
+}

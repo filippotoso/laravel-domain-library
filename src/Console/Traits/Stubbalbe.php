@@ -40,9 +40,9 @@ trait Stubbalbe
         return $content;
     }
 
-    protected function storeStub($stub, $data)
+    protected function storeStub($stub, $data, $path = null)
     {
-        $path = $this->path($data);
+        $path = $path ?? $this->path($data);
         $content = $this->parseStub($stub, $data);
         $this->makeDirectory(dirname($path));
         file_put_contents($path, $content);

@@ -1,0 +1,13 @@
+<?php
+
+namespace Domain\{{ domain }\States;
+
+class {{ state }} extends {{ name }}State
+{
+    /*
+    public function getSomething(): string
+    {
+
+    }
+    // */
+}

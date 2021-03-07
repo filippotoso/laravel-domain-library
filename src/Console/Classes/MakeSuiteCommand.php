@@ -19,6 +19,7 @@ class MakeSuiteCommand extends Command
                             {domain : The domain name (ie. Invoices)}
                             {application : The name of the application (ie. Admin\Invoices)}
                             {model : The model name (ie. Invoice)}
+                            {states? : Comma separated states (ie. Paid,Pending,Overdue,Cancelled)}
                             {--force : Overwrite the existing classes}';
 
     /**
@@ -90,6 +91,13 @@ class MakeSuiteCommand extends Command
         $this->call('domain:make:request', [
             'name' => $data['model'],
             'application' => $data['application'],
+            '--force' => $this->option('force'),
+        ]);
+
+        $this->call('domain:make:states', [
+            'name' => $data['model'],
+            'domain' => $data['domain'],
+            'states' => $data['states'] ?? null,
             '--force' => $this->option('force'),
         ]);
     }

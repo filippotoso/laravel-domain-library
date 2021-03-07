@@ -14,4 +14,10 @@ class {{ name }} extends Model
     protected $dispatchesEvents = [
     ];
 
+    /*
+    public function getStateAttribute(): {{ name }}State
+    {
+        return new $this->state_class($this);
+    }
+    // */
 }
