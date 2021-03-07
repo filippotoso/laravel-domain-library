@@ -1,0 +1,29 @@
+{
+    "name": "filippo-toso/laravel-domain-library",
+    "description": "Build DDD (Domain Driven Development) applications in Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Filippo Toso",
+            "email": "filippo@toso.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "illuminate/support": "^8.0",
+        "nikic/php-parser": "^4.10",
+        "league/flysystem": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "FilippoToso\\Domain\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FilippoToso\\Domain\\Support\\ServiceProvider"
+            ]
+        }
+    }
+}
