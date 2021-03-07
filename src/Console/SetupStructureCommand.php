@@ -2,12 +2,12 @@
 
 namespace FilippoToso\Domain\Console;
 
-use FilippoToso\Domain\Console\Traits\Copyable;
+use FilippoToso\Domain\Console\Traits\Makable;
 use Illuminate\Console\Command;
 
-class SetupStructure extends Command
+class SetupStructureCommand extends Command
 {
-    use Copyable;
+    use Makable;
 
     /**
      * The name and signature of the console command.
@@ -142,8 +142,8 @@ class SetupStructure extends Command
         $this->copyDirectory(base_path('app/Providers'), base_path('src/App/Providers'));
         $this->copyDirectory(base_path('app/Http/Middleware'), base_path('src/Support/Middleware'));
 
-        $this->copyDirectory(__DIR__ . '/../../resources/stub/App', base_path('src/App'));
-        $this->copyDirectory(__DIR__ . '/../../resources/stub/Support', base_path('src/Support'));
+        $this->copyDirectory(__DIR__ . '/../../resources/src/App', base_path('src/App'));
+        $this->copyDirectory(__DIR__ . '/../../resources/src/Support', base_path('src/Support'));
 
         $files = glob(base_path('src/Support/Middleware/*.php'));
 

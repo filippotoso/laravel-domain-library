@@ -1,0 +1,14 @@
+<?php
+
+namespace Domain\{{ domain }}\Actions;
+
+use Domain\{{ domain }}\DataTransferObjects\{{ model }}Data;
+use Domain\{{ domain }}\Models\{{ model }};
+
+class {{ name }}Action
+{
+    public function __invoke({{ model }}Data ${{ object }}Data): {{ model }}
+    {
+        // TODO: Implement this!
+    }
+}

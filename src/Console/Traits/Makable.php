@@ -6,7 +6,7 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
 use League\Flysystem\Adapter\Local;
 
-trait Copyable
+trait Makable
 {
     protected function makeDirectory($folder)
     {

@@ -2,27 +2,27 @@
 
 namespace FilippoToso\Domain\Console;
 
-use FilippoToso\Domain\Console\Traits\Copyable;
+use FilippoToso\Domain\Console\Traits\Makable;
 use Illuminate\Console\Command;
 
-class MakeDomain extends Command
+class MakeApplicationCommand extends Command
 {
-    use Copyable;
+    use Makable;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'domain:make:domain 
-                            {domain : The domain name (ie. Invoices)}';
+    protected $signature = 'domain:make:application 
+                            {application : The application name as namespace (ie. Admin\Invoices)}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Make a domain folder structure';
+    protected $description = 'Make an application folder structure';
 
     /**
      * Create a new command instance.
@@ -41,16 +41,14 @@ class MakeDomain extends Command
      */
     public function handle()
     {
-        $domain = $this->argument('domain');
+        $application = $this->argument('application');
 
         $folders = [
-            'Actions', 'QueryBuilders', 'Collections', 'DataTransferObjects',
-            'Events', 'Exceptions', 'Listeners', 'Models', 'Rules',
-            'States', 'Observers', 'Subscribers',
+            'Controllers', 'Middlewares', 'Requests', 'Resources', 'ViewModels', 'Queries',
         ];
 
         foreach ($folders as $folder) {
-            $path = base_path('src/Domain/' . $domain . '/' . $folder);
+            $path = base_path('src/App/' . $application . '/' . $folder);
             $this->makeDirectory($path);
         }
     }

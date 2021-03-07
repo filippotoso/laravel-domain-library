@@ -1,0 +1,21 @@
+<?php
+
+namespace App\{{ application }}\ViewModels;
+
+use Domain\{{ domain }}\Models\{{ model }};
+use Spatie\ViewModels\ViewModel;
+
+class {{ name }}ViewModel extends ViewModel
+{
+    public {{ model }} ${{ object }};
+
+    public function __construct(?{{ model }} ${{ object }} = null)
+    {
+        $this->{{ object }} = ${{ object }} ?? new {{ model }}();
+    }
+
+    public function {{ object }}(): {{ model }}
+    {
+        return $this->{{ object }} ?? new {{ model }}();
+    }
+}

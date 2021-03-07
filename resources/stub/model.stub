@@ -1,0 +1,17 @@
+<?php
+
+namespace Domain\{{ domain }}\Models;
+
+use FilippoToso\Domain\Traits\Domainable;
+use Illuminate\Database\Eloquent\Model;
+// use Spatie\ModelStates\HasStates;
+
+class {{ name }} extends Model
+{
+    use Domainable;
+    // use HasStates;
+
+    protected $dispatchesEvents = [
+    ];
+
+}

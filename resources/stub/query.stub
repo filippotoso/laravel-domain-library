@@ -1,0 +1,20 @@
+<?php
+
+namespace App\{{ application }}\Queries;
+
+use Domain\{{ domain }}\Models\{{ model }};
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\AllowedInclude;
+use Spatie\QueryBuilder\AllowedSort;
+use Spatie\QueryBuilder\QueryBuilder;
+
+class {{ name }}Query extends QueryBuilder
+{
+    public function __construct(Request $request)
+    {
+        $query = {{ model }}::query();
+
+        parent::__construct($query, $request);
+    }
+}

@@ -1,0 +1,15 @@
+<?php
+
+namespace Domain\{{ domain }}\DataTransferObjects;
+
+use App\{{ application }}\Requests\{{ name }}FormRequest;
+use Spatie\DataTransferObject\DataTransferObject;
+
+class {{ name }}Data extends DataTransferObject
+{
+    public static function fromRequest({{ name }}FormRequest $request): {{ name }}Data {
+        return new self([
+            // TODO: Implement this!
+        ]);
+    } 
+}
