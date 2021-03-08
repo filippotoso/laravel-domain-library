@@ -4,6 +4,7 @@ namespace FilippoToso\Domain\Console;
 
 use FilippoToso\Domain\Console\Traits\Makable;
 use Illuminate\Console\Command;
+use Illuminate\Support\Composer;
 
 class SetupStructureCommand extends Command
 {
@@ -24,13 +25,20 @@ class SetupStructureCommand extends Command
     protected $description = 'Setup directory structure and composer settings';
 
     /**
-     * Create a new command instance.
+     * @var \Illuminate\Support\Composer
+     */
+    protected $composer;
+
+    /**
+     * Create a new session table command instance.
      *
+     * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
-    public function __construct()
+    public function __construct(Composer $composer)
     {
         parent::__construct();
+        $this->composer = $composer;
     }
 
     /**
@@ -40,26 +48,38 @@ class SetupStructureCommand extends Command
      */
     public function handle()
     {
-        $this->checkSrcFolder();
+        if ($this->srcFolderExists()) {
+            $this->error('The src folder already exists!');
+        } else {
+            $this->info('Creating folders...');
+            $this->createFolders();
 
-        $this->createFolders();
+            $this->info('Copying base files...');
+            $this->copyFiles();
 
-        $this->copyFiles();
+            $this->info('Updating config/auth.php file...');
+            $this->updateConfig();
 
-        $this->updateConfig();
+            $this->info('Updating bootstrap/app.php...');
+            $this->updateBootstrap();
 
-        $this->updateBootstrap();
+            $this->info('Updating composer.json...');
+            $this->updateComposer();
 
-        $this->updateComposer();
+            $this->info('Dumping autoload...');
+            $this->composer->dumpAutoloads();
+        }
     }
 
-    protected function checkSrcFolder()
+    protected function srcFolderExists()
     {
         $folder = base_path('src');
 
         if (is_dir($folder)) {
-            throw new \Exception('The src folder already exists!');
+            return true;
         }
+
+        return false;
     }
 
     protected function createFolders()

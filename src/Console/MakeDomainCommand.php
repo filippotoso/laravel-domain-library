@@ -49,6 +49,8 @@ class MakeDomainCommand extends Command
             'States', 'Observers', 'Subscribers',
         ];
 
+        $this->info(sprintf('Making domain %s...', $domain));
+
         foreach ($folders as $folder) {
             $path = base_path('src/Domain/' . $domain . '/' . $folder);
             $this->makeDirectory($path);

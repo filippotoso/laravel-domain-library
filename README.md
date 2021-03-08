@@ -39,11 +39,10 @@ Now the fun part... First, we are going to build the domain structure:
 
 ```
 php artisan domain:setup:structure
-composer dump-autoload
 ```
 
 This command will create a new `src` folder that will contain 3 namespaces `App`, `Domain` and `Support`.
-It will also rewire the Laravel application to work with this new directory structure (ie. moving middlewares and providers, updating the bootstrap code, introducing a new Application class, and so on). Remember to dump the composer autoload in order to make the changes effective.
+It will also rewire the Laravel application to work with this new directory structure (ie. moving middlewares and providers, updating the bootstrap code, introducing a new Application class, and so on).
 
 At this point you can start building your domain driven application. Let's create the structure for a sample domain named `Invoices`
 
