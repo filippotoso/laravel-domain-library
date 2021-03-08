@@ -1,6 +1,6 @@
 # Why does it exist?
 
-I read the [Laravel Beyound CRUD](https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel) series and decided *this is the way*.
+I read the [Laravel Beyond CRUD](https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel) series and decided *this is the way*.
 But I'm a lazy coder: I really don't like to write a lot of code. So, I needed a toolkit to automate as much coding as possible. And here it is!
 
 ## Requirements
