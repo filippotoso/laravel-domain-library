@@ -1,6 +1,6 @@
 {
     "name": "filippo-toso/laravel-domain-library",
-    "description": "Build DDD (Domain Driven Development) applications in Laravel",
+    "description": "Build domain driven applications in Laravel",
     "license": "MIT",
     "authors": [
         {

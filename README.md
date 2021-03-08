@@ -12,7 +12,7 @@ But I'm a lazy coder: I really don't like to write a lot of code. So, I needed a
 
 It provides:
 
-- multiple console commands to create DDD classes
+- multiple console commands to create domain driven classes
 - traits and classes to speed up development
 
 The commands prefix is `domain:`.
