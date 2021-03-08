@@ -4,6 +4,7 @@ namespace Domain\{{ domain }}\Models;
 
 use FilippoToso\Domain\Traits\Domainable;
 use Illuminate\Database\Eloquent\Model;
+// use Domain\{{ domain }}\States\{{ name }}State;
 // use Spatie\ModelStates\HasStates;
 
 class {{ name }} extends Model

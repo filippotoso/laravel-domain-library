@@ -17,9 +17,9 @@ class MakeQueryCommand extends Command
      */
     protected $signature = 'domain:make:query 
                             {name : The name of the query (ie. InvoiceIndex)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {application : The name of the application (ie. Admin\Invoices)}
-                            {model : The name of the model (ie. Invoice)}
+                            {--domain= : The domain name (ie. Invoices)}
+                            {--application= : The name of the application (ie. Admin\Invoices)}
+                            {--model= : The name of the model (ie. Invoice)}
                             {--force : Overwrite the existing query}';
 
     /**
@@ -52,14 +52,18 @@ class MakeQueryCommand extends Command
 
         $data = [
             'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
-            'application' => $this->argument('application'),
-            'model' => $this->argument('model'),
+            'domain' => $this->option('domain'),
+            'application' => $this->option('application'),
+            'model' => $this->option('model'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('query', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making query %sQuery...', $data['name']));
+            $this->storeStub('query', $data);
+            $this->info(sprintf('Query %sQuery successfully made!', $data['name']));
+        } else {
+            $this->error(sprintf('Query %sQuery already exists!', $data['name']));
+        }
     }
 
     protected function path($data)

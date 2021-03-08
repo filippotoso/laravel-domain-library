@@ -1,13 +1,19 @@
 <?php
 
-namespace Domain\{{ domain }}\Actions;
+namespace Domain\{{ domain }}\Actions\{{ model }};
 
 use Domain\{{ domain }}\DataTransferObjects\{{ model }}Data;
 use Domain\{{ domain }}\Models\{{ model }};
+use FilippoToso\Domain\Action;
 
-class {{ name }}Action
+class {{ name }}Action extends Action
 {
-    public function __invoke({{ model }}Data ${{ object }}Data): {{ model }}
+    public function __construct() 
+    {
+        // You can use the container method injection to compose multiple actions
+    }
+
+    public function execute({{ model }}Data ${{ object }}Data): {{ model }}
     {
         // TODO: Implement this!
     }

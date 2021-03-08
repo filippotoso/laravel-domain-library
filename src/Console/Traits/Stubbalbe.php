@@ -13,13 +13,15 @@ trait Stubbalbe
         }
     }
 
-    protected function checkExisting($data)
+    protected function alreadyExists($data)
     {
         $path = $this->path($data);
 
         if (file_exists($path) && !$this->option('force')) {
-            throw new \Exception('The file ' . $path . ' already exists!');
+            return true;
         }
+
+        return false;
     }
 
     protected function parseStub($stub, $data)

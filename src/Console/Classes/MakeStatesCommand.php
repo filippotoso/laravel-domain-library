@@ -16,9 +16,9 @@ class MakeStatesCommand extends Command
      * @var string
      */
     protected $signature = 'domain:make:states 
-                            {name : The name of the state (ie. Invoice)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {states : Comma separated states (ie. Paid,Pending,Overdue,Cancelled)}
+                            {--model= : The name of the model (ie. Invoice)}                        
+                            {--domain= : The domain name (ie. Invoices)}
+                            {--states= : Comma separated states (ie. Paid,Pending,Overdue,Cancelled)}
                             {--force : Overwrite the existing state}';
 
     /**
@@ -50,23 +50,34 @@ class MakeStatesCommand extends Command
         $this->checkRequirement();
 
         $data = [
-            'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
+            'model' => $this->option('model'),
+            'domain' => $this->option('domain'),
         ];
 
-        $this->checkExisting($data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making state %sState...', $data['model']));
+            $this->storeStub('abstractstate', $data);
+            $this->info(sprintf('State %sState successfully made!', $data['model']));
+        } else {
+            $this->error(sprintf('State %sState already exists!', $data['model']));
+        }
 
-        $this->storeStub('abstractstate', $data);
-
-        $states = explode(',', $this->argument('states'));
+        $states = explode(',', $this->option('states'));
         foreach ($states as $state) {
-            $path = base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/States/' . $data['name'] . '/' . $state . '.php');
-            $this->storeStub('state', array_merge($data, ['state' => $state]), $path);
+            $path = base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/States/' . $data['model'] . '/' . $state . '.php');
+
+            if (file_exists($path) && !$this->option('force')) {
+                $this->error(sprintf('State %s%sState already exists!', $data['model'], $state));
+            } else {
+                $this->info(sprintf('Making state %s%sState...', $data['model'], $state));
+                $this->storeStub('state', array_merge($data, ['state' => $state]), $path);
+                $this->info(sprintf('State %s%sState successfully made!', $data['model'], $state));
+            }
         }
     }
 
     protected function path($data)
     {
-        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/States/' . $data['name'] . 'State.php');
+        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/States/' . $data['model'] . 'State.php');
     }
 }

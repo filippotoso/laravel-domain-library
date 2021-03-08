@@ -17,9 +17,9 @@ class MakeViewModelCommand extends Command
      */
     protected $signature = 'domain:make:viewmodel 
                             {name : The name of the view model (ie. InvoiceForm)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {application : The name of the application (ie. Admin\Invoices)}
-                            {model : The name of the model (ie. Invoice)}
+                            {--domain= : The domain name (ie. Invoices)}
+                            {--application= : The name of the application (ie. Admin\Invoices)}
+                            {--model= : The name of the model (ie. Invoice)}
                             {--force : Overwrite the existing view model}';
 
     /**
@@ -52,14 +52,18 @@ class MakeViewModelCommand extends Command
 
         $data = [
             'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
-            'application' => $this->argument('application'),
-            'model' => $this->argument('model'),
+            'domain' => $this->option('domain'),
+            'application' => $this->option('application'),
+            'model' => $this->option('model'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('viewmodel', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making view model %sViewModel...', $data['name']));
+            $this->storeStub('viewmodel', $data);
+            $this->info(sprintf('View model %sViewModel successfully made!', $data['name']));
+        } else {
+            $this->error(sprintf('View model %sViewModel already exists!', $data['name']));
+        }
     }
 
     protected function path($data)

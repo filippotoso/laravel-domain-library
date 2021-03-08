@@ -6,7 +6,7 @@ use FilippoToso\Domain\Console\Traits\Makable;
 use FilippoToso\Domain\Console\Traits\Stubbalbe;
 use Illuminate\Console\Command;
 
-class MakeQueryBuilderCommand extends Command
+class MakeSubscriberCommand extends Command
 {
     use Makable, Stubbalbe;
 
@@ -15,17 +15,18 @@ class MakeQueryBuilderCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'domain:make:querybuilder 
+    protected $signature = 'domain:make:subscriber 
                             {--model= : The name of the model (ie. Invoice)}                        
                             {--domain= : The domain name (ie. Invoices)}
-                            {--force : Overwrite the existing query builder}';
+                            {--events= : Comma separated events (ie. saving,created,deleting)}
+                            {--force : Overwrite the existing events}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Make a query builder';
+    protected $description = 'Make a model subscriber with optional events';
 
     protected $requirements = [];
 
@@ -51,19 +52,27 @@ class MakeQueryBuilderCommand extends Command
         $data = [
             'model' => $this->option('model'),
             'domain' => $this->option('domain'),
+            'events' => $this->option('events'),
         ];
 
         if (!$this->alreadyExists($data)) {
-            $this->info(sprintf('Making query builder %sQueryBuilder...', $data['model']));
-            $this->storeStub('querybuilder', $data);
-            $this->info(sprintf('Query builder %sQueryBuilder successfully made!', $data['model']));
+            $this->info(sprintf('Making subscriber %sSubscriber...', $data['model']));
+            $this->storeStub('subscriber', $data);
+            $this->info(sprintf('Subscriber %sSubscriber successfully made!', $data['model']));
         } else {
-            $this->error(sprintf('Query builder %sQueryBuilder already exists!', $data['model']));
+            $this->error(sprintf('Subscriber %sSubscriber already exists!', $data['model']));
         }
+
+        $this->call('domain:make:events', [
+            '--model' => $data['model'],
+            '--domain' => $data['domain'],
+            '--events' => $data['events'] ?? null,
+            '--force' => $this->option('force'),
+        ]);
     }
 
     protected function path($data)
     {
-        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/QueryBuilders/' . $data['model'] . 'QueryBuilder.php');
+        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Subscribers/' . $data['model'] . 'Subscriber.php');
     }
 }

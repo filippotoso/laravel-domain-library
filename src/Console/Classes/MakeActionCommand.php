@@ -15,11 +15,10 @@ class MakeActionCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'domain:make:action 
-                            {name : The name of the query (ie. InvoiceIndex)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {application : The name of the application (ie. Admin\Invoices)}
-                            {model : The name of the model (ie. Invoice)}
+    protected $signature = 'domain:make:action {name : The name of the action (ie. InvoiceIndex)}                        
+                            {--domain= : The domain name (ie. Invoices)}
+                            {--application= : The name of the application (ie. Admin\Invoices)}
+                            {--model= : The name of the model (ie. Invoice)}
                             {--force : Overwrite the existing query}';
 
     /**
@@ -52,18 +51,22 @@ class MakeActionCommand extends Command
 
         $data = [
             'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
-            'application' => $this->argument('application'),
-            'model' => $this->argument('model'),
+            'domain' => $this->option('domain'),
+            'application' => $this->option('application'),
+            'model' => $this->option('model'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('action', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making action %s...', $data['name']));
+            $this->storeStub('action', $data);
+            $this->info(sprintf('Action %s successfully made!', $data['name']));
+        } else {
+            $this->error(sprintf('Action %s already exists!', $data['name']));
+        }
     }
 
     protected function path($data)
     {
-        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Actions/' . $data['name'] . 'Action.php');
+        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Actions/' . $data['model'] . '/' . $data['name'] . 'Action.php');
     }
 }

@@ -16,9 +16,8 @@ class MakeModelCommand extends Command
      * @var string
      */
     protected $signature = 'domain:make:model 
-                            {name : The name of the collection (ie. Invoice)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {model : The name of the model (ie. Invoice)}                        
+                            {name : The name of the model (ie. Invoice)}                        
+                            {--domain= : The domain name (ie. Invoices)}
                             {--force : Overwrite the existing collection}';
 
     /**
@@ -51,12 +50,16 @@ class MakeModelCommand extends Command
 
         $data = [
             'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
+            'domain' => $this->option('domain'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('model', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making model %s...', $data['name']));
+            $this->storeStub('model', $data);
+            $this->info(sprintf('Model %s successfully made!', $data['name']));
+        } else {
+            $this->error(sprintf('Model %s already exists!', $data['name']));
+        }
     }
 
     protected function path($data)

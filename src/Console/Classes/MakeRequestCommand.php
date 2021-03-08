@@ -17,7 +17,7 @@ class MakeRequestCommand extends Command
      */
     protected $signature = 'domain:make:request 
                             {name : The name of the query (ie. Invoice)}                        
-                            {application : The name of the application (ie. Admin\Invoices)}
+                            {--application= : The name of the application (ie. Admin\Invoices)}
                             {--force : Overwrite the existing request}';
 
     /**
@@ -50,12 +50,16 @@ class MakeRequestCommand extends Command
 
         $data = [
             'name' => $this->argument('name'),
-            'application' => $this->argument('application'),
+            'application' => $this->option('application'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('request', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making request %sFormRequest...', $data['name']));
+            $this->storeStub('request', $data);
+            $this->info(sprintf('Request %sFormRequest successfully made!', $data['name']));
+        } else {
+            $this->error(sprintf('Request %sFormRequest already exists!', $data['name']));
+        }
     }
 
     protected function path($data)

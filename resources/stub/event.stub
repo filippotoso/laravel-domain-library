@@ -1,0 +1,15 @@
+<?php
+
+namespace Domain\{{ domain }}\Events\{{ model }};
+
+use Domain\Invoices\Models\Invoice;
+
+class {{ model }}{{ event }}Event
+{
+    public {{ model }} ${{ object }};
+
+    public function __construct({{ model }} ${{ object }})
+    {
+        $this->{{ object }} = ${{ object }};
+    }
+}

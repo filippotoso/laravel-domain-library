@@ -2,7 +2,7 @@
 
 namespace Domain\{{ domain }\States;
 
-class {{ state }} extends {{ name }}State
+class {{ state }} extends {{ model }}State
 {
     /*
     public function getSomething(): string

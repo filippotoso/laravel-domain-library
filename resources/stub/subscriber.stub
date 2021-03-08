@@ -1,0 +1,114 @@
+<?php
+
+namespace Domain\{{ domain }}\Subscribers;
+
+use FilippoToso\Domain\Subscriber;
+use Illuminate\Events\Dispatcher;
+use Domain\{{ domain }}\Events\{{ model }};
+
+/*
+Remember to add this subscriber to the $subscribe property of the EventServiceProvider.
+
+protected $subscribe = [
+    \Domain\{{ domain }}\Subscribers\{{ model }}Subscriber::class,
+];
+// */
+
+class {{ model }}Subscriber extends Subscriber
+{
+    public function __construct()
+    {
+        
+    }
+
+    /*
+    public function retrieved({{ model }}\{{ model }}RetrievedEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function creating({{ model }}\{{ model }}CreatingEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function created({{ model }}\{{ model }}CreatedEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function retrieved({{ model }}\{{ model }}RetrievedEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function updating({{ model }}\{{ model }}UpdatingEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function updated({{ model }}\{{ model }}UpdatedEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function saving({{ model }}\{{ model }}SavingEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function saved({{ model }}\{{ model }}SavedEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function deleting({{ model }}\{{ model }}DeletingEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function deleted({{ model }}\{{ model }}DeletedEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function restoring({{ model }}\{{ model }}RestoringEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function restored({{ model }}\{{ model }}RestoredEvent $event)
+    {
+
+    }
+    // */
+
+    /*
+    public function replicating({{ model }}\{{ model }}ReplicatingEvent $event)
+    {
+
+    }
+    // */
+}

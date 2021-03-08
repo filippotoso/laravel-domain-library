@@ -16,10 +16,9 @@ class MakeDataTransferObjectCommand extends Command
      * @var string
      */
     protected $signature = 'domain:make:dto 
-                            {name : The name of the data transfer object (ie. Invoice)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {application : The name of the application (ie. Admin\Invoices)}
-                            {model : The model name (ie. Invoice)}
+                            {name : The name of the data transfer object (ie. Invoice)}
+                            {--domain= : The domain name (ie. Invoices)}
+                            {--application= : The name of the application (ie. Admin\Invoices)}
                             {--force : Overwrite the existing query}';
 
     /**
@@ -52,14 +51,17 @@ class MakeDataTransferObjectCommand extends Command
 
         $data = [
             'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
-            'application' => $this->argument('application'),
-            'model' => $this->argument('model'),
+            'domain' => $this->option('domain'),
+            'application' => $this->option('application'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('datatransferobject', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making data transfer object %sData...', $data['name']));
+            $this->storeStub('datatransferobject', $data);
+            $this->info(sprintf('Data transfer object %sData successfully made!', $data['name']));
+        } else {
+            $this->error(sprintf('Data transfer object %sData already exists!', $data['name']));
+        }
     }
 
     protected function path($data)

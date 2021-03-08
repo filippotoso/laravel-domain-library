@@ -4,7 +4,7 @@ namespace Domain\{{ domain }}\QueryBuilders;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class {{ name }}QueryBuilder extends Builder
+class {{ model }}QueryBuilder extends Builder
 {
 
 }

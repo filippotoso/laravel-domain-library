@@ -16,9 +16,8 @@ class MakeCollectionCommand extends Command
      * @var string
      */
     protected $signature = 'domain:make:collection 
-                            {name : The name of the collection (ie. Invoice)}                        
-                            {domain : The domain name (ie. Invoices)}
-                            {model : The model name (ie. Invoice)}
+                            {--model= : The model name (ie. Invoice)}
+                            {--domain= : The domain name (ie. Invoices)}
                             {--force : Overwrite the existing collection}';
 
     /**
@@ -50,18 +49,21 @@ class MakeCollectionCommand extends Command
         $this->checkRequirement();
 
         $data = [
-            'name' => $this->argument('name'),
-            'domain' => $this->argument('domain'),
-            'model' => $this->argument('model'),
+            'model' => $this->option('model'),
+            'domain' => $this->option('domain'),
         ];
 
-        $this->checkExisting($data);
-
-        $this->storeStub('collection', $data);
+        if (!$this->alreadyExists($data)) {
+            $this->info(sprintf('Making collection %sCollection...', $data['model']));
+            $this->storeStub('collection', $data);
+            $this->info(sprintf('Action %sCollection successfully made!', $data['model']));
+        } else {
+            $this->error(sprintf('Action %sCollection already exists!', $data['model']));
+        }
     }
 
     protected function path($data)
     {
-        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Collections/' . $data['name'] . 'Collection.php');
+        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Collections/' . $data['model'] . 'Collection.php');
     }
 }
