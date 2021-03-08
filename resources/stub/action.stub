@@ -4,9 +4,8 @@ namespace Domain\{{ domain }}\Actions\{{ model }};
 
 use Domain\{{ domain }}\DataTransferObjects\{{ model }}Data;
 use Domain\{{ domain }}\Models\{{ model }};
-use FilippoToso\Domain\Action;
 
-class {{ name }}Action extends Action
+class {{ name }}Action
 {
     public function __construct() 
     {
