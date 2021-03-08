@@ -6,7 +6,7 @@ use FilippoToso\Domain\Console\Traits\Makable;
 use FilippoToso\Domain\Console\Traits\Stubbalbe;
 use Illuminate\Console\Command;
 
-class MakeModelCommand extends Command
+class MakeExceptionCommand extends Command
 {
     use Makable, Stubbalbe;
 
@@ -15,17 +15,17 @@ class MakeModelCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'domain:make:model 
-                            {name : The name of the model (ie. Invoice)}                        
+    protected $signature = 'domain:make:exception 
+                            {name : The name of the exception (ie. InvalidInvoice)}                        
                             {--domain= : The domain name (ie. Invoices)}
-                            {--force : Overwrite the existing model}';
+                            {--force : Overwrite the existing exception}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Make a model';
+    protected $description = 'Make a domaine exception';
 
     protected $requirements = [];
 
@@ -54,16 +54,16 @@ class MakeModelCommand extends Command
         ];
 
         if (!$this->alreadyExists($data)) {
-            $this->info(sprintf('Making model %s...', $data['name']));
-            $this->storeStub('model', $data);
-            $this->info(sprintf('Model %s successfully made!', $data['name']));
+            $this->info(sprintf('Making exception %sException...', $data['name']));
+            $this->storeStub('exception', $data);
+            $this->info(sprintf('Exception %sException successfully made!', $data['name']));
         } else {
-            $this->error(sprintf('Model %s already exists!', $data['name']));
+            $this->error(sprintf('Exception %sException already exists!', $data['name']));
         }
     }
 
     protected function path($data)
     {
-        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Models/' . $data['name'] . '.php');
+        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Exceptions/' . $data['name'] . '.php');
     }
 }

@@ -19,7 +19,7 @@ class MakeActionCommand extends Command
                             {--domain= : The domain name (ie. Invoices)}
                             {--application= : The name of the application (ie. Admin\Invoices)}
                             {--model= : The name of the model (ie. Invoice)}
-                            {--force : Overwrite the existing query}';
+                            {--force : Overwrite the existing action}';
 
     /**
      * The console command description.

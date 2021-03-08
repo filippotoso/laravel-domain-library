@@ -19,7 +19,7 @@ class MakeDataTransferObjectCommand extends Command
                             {name : The name of the data transfer object (ie. Invoice)}
                             {--domain= : The domain name (ie. Invoices)}
                             {--application= : The name of the application (ie. Admin\Invoices)}
-                            {--force : Overwrite the existing query}';
+                            {--force : Overwrite the existing data transfer object}';
 
     /**
      * The console command description.

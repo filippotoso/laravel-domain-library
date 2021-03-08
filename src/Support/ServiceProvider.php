@@ -37,6 +37,7 @@ class ServiceProvider extends EventServiceProvider
                 Classes\MakeStatesCommand::class,
                 Classes\MakeEventsCommand::class,
                 Classes\MakeSubscriberCommand::class,
+                Classes\MakeExceptionCommand::class,
             ]);
         }
     }

@@ -145,6 +145,12 @@ php artisan domain:make:action InvoiceIndex --domain=Invoices --application=Admi
 php artisan domain:make:request Invoice --application=Admin\Invoices
 ```
 
+#### Making exceptions
+
+```
+php artisan domain:make:exception InvalidInvoice --domain=Invoices
+```
+
 ### Making a suite of classes
 
 This command will create all the classes above in a single sweep:
@@ -159,6 +165,7 @@ php artisan domain:make:suite
     --dtos=Invoice,CreateInvoice 
     --queries=InvoiceIndex 
     --dtos=Invoice,CreateInvoice 
+    --exceptions=InvalidInvoice 
     --queries=InvoiceIndex 
     --requests=Invoice 
     --viewmodels=InvoiceForm 

@@ -19,7 +19,7 @@ class MakeSubscriberCommand extends Command
                             {--model= : The name of the model (ie. Invoice)}                        
                             {--domain= : The domain name (ie. Invoices)}
                             {--events= : Comma separated events (ie. saving,created,deleting)}
-                            {--force : Overwrite the existing events}';
+                            {--force : Overwrite the existing subscriber}';
 
     /**
      * The console command description.
