@@ -217,7 +217,7 @@ class SetupStructureCommand extends Command
     protected function updateComposer()
     {
         $path = base_path('composer.json');
-        $data = json_decode($path, true);
+        $data = json_decode(file_get_contents($path), true);
 
         $data['autoload']['psr-4'] = [
             'App\\' => 'src/App',
@@ -228,6 +228,6 @@ class SetupStructureCommand extends Command
         $data['autoload']['files'] = $data['autoload']['files'] ?? [];
         $data['autoload']['files'][] = 'src/Support/helpers.php';
 
-        file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     }
 }
