@@ -2,6 +2,9 @@
 
 namespace FilippoToso\Domain;
 
+use ReflectionClass;
+use ReflectionMethod;
+
 class Subscriber
 {
     public function subscribe(Dispatcher $dispatcher)
