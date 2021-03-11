@@ -14,7 +14,7 @@ trait Collectionable
     {
         $tokens = explode('\\', get_class($this));
         $model = last($tokens);
-        $tokens = array_slice($tokens, 0, length($tokens) - 2);
+        $tokens = array_slice($tokens, 0, count($tokens) - 2);
         $collectionClass = implode('\\', $tokens) . '\\Collections\\' . $model . 'Collection';
 
         if (class_exists($collectionClass)) {
