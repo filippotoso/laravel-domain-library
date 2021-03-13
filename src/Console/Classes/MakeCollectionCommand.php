@@ -56,9 +56,9 @@ class MakeCollectionCommand extends Command
         if (!$this->alreadyExists($data)) {
             $this->info(sprintf('Making collection %sCollection...', $data['model']));
             $this->storeStub('collection', $data);
-            $this->info(sprintf('Action %sCollection successfully made!', $data['model']));
+            $this->info(sprintf('Collection %sCollection successfully made!', $data['model']));
         } else {
-            $this->error(sprintf('Action %sCollection already exists!', $data['model']));
+            $this->error(sprintf('Collection %sCollection already exists!', $data['model']));
         }
     }
 

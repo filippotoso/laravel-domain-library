@@ -1,0 +1,9 @@
+
+    Route::get('{{ url }}', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'index'])->name('{{ name }}.index');
+    Route::get('{{ url }}/create', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'create'])->name('{{ name }}.create');
+    Route::post('{{ url }}', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'store'])->name('{{ name }}.store');
+    Route::get('{{ url }}/{{{ object }}}', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'show'])->name('{{ name }}.show');
+    Route::get('{{ url }}/{{{ object }}}/edit', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'edit'])->name('{{ name }}.edit');
+    Route::get('{{ url }}/{{{ object }}}/clone', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'clone'])->name('{{ name }}.clone');
+    Route::patch('{{ url }}/{{{ object }}}', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'update'])->name('{{ name }}.update');
+    Route::delete('{{ url }}/{{{ object }}}', [App\{{ application }}\Controllers\{{ model }}\{{ controller }}Controller::class, 'delete'])->name('{{ name }}.delete');

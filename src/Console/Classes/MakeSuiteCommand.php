@@ -99,64 +99,76 @@ class MakeSuiteCommand extends Command
 
         if ($data['domain'] && $data['application']) {
             foreach ($data['dtos'] as $dto) {
-                $this->call('domain:make:dto', [
-                    'name' => $dto,
-                    '--domain' => $data['domain'],
-                    '--application' => $data['application'],
-                    '--force' => $data['force'],
-                ]);
+                if ($dto) {
+                    $this->call('domain:make:dto', [
+                        'name' => $dto,
+                        '--domain' => $data['domain'],
+                        '--application' => $data['application'],
+                        '--force' => $data['force'],
+                    ]);
+                }
             }
         }
 
         if ($data['domain']) {
             foreach ($data['exceptions'] as $exception) {
-                $this->call('domain:make:exception', [
-                    'name' => $exception,
-                    '--domain' => $data['domain'],
-                    '--force' => $data['force'],
-                ]);
+                if ($exception) {
+                    $this->call('domain:make:exception', [
+                        'name' => $exception,
+                        '--domain' => $data['domain'],
+                        '--force' => $data['force'],
+                    ]);
+                }
             }
         }
 
         if ($data['domain'] && $data['application'] && $data['model']) {
             foreach ($data['queries'] as $query) {
-                $this->call('domain:make:query', [
-                    'name' => $query,
-                    '--domain' => $data['domain'],
-                    '--application' => $data['application'],
-                    '--model' => $data['model'],
-                    '--force' => $data['force'],
-                ]);
+                if ($query) {
+                    $this->call('domain:make:query', [
+                        'name' => $query,
+                        '--domain' => $data['domain'],
+                        '--application' => $data['application'],
+                        '--model' => $data['model'],
+                        '--force' => $data['force'],
+                    ]);
+                }
             }
 
             foreach ($data['viewmodels'] as $viewmodel) {
-                $this->call('domain:make:viewmodel', [
-                    'name' => $viewmodel,
-                    '--domain' => $data['domain'],
-                    '--application' => $data['application'],
-                    '--model' => $data['model'],
-                    '--force' => $data['force'],
-                ]);
+                if ($viewmodel) {
+                    $this->call('domain:make:viewmodel', [
+                        'name' => $viewmodel,
+                        '--domain' => $data['domain'],
+                        '--application' => $data['application'],
+                        '--model' => $data['model'],
+                        '--force' => $data['force'],
+                    ]);
+                }
             }
 
             foreach ($data['actions'] as $action) {
-                $this->call('domain:make:action', [
-                    'name' => $action,
-                    '--domain' => $data['domain'],
-                    '--application' => $data['application'],
-                    '--model' => $data['model'],
-                    '--force' => $data['force'],
-                ]);
+                if ($action) {
+                    $this->call('domain:make:action', [
+                        'name' => $action,
+                        '--domain' => $data['domain'],
+                        '--application' => $data['application'],
+                        '--model' => $data['model'],
+                        '--force' => $data['force'],
+                    ]);
+                }
             }
         }
 
         if ($data['application']) {
             foreach ($data['requests'] as $request) {
-                $this->call('domain:make:request', [
-                    'name' => $request,
-                    '--application' => $data['application'],
-                    '--force' => $data['force'],
-                ]);
+                if ($request) {
+                    $this->call('domain:make:request', [
+                        'name' => $request,
+                        '--application' => $data['application'],
+                        '--force' => $data['force'],
+                    ]);
+                }
             }
         }
 

@@ -21,6 +21,6 @@ trait Collectionable
             return new $collectionClass($models);
         }
 
-        return parent::newCollection($query);
+        return parent::newCollection($models);
     }
 }

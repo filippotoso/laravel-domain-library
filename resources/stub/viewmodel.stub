@@ -13,9 +13,4 @@ class {{ name }}ViewModel extends ViewModel
     {
         $this->{{ object }} = ${{ object }} ?? new {{ model }}();
     }
-
-    public function {{ object }}(): {{ model }}
-    {
-        return $this->{{ object }} ?? new {{ model }}();
-    }
 }
