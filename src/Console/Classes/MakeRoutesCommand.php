@@ -19,7 +19,6 @@ class MakeRoutesCommand extends Command
                             {--url= : The base url (ie. admin/invoices)}
                             {--application= : The name of the application (ie. Admin\Invoices)}
                             {--controller= : The name of the controller (ie. Invoice)}
-                            {--model= : The name of the model (ie. Invoice)}
                             {--force : Overwrite the existing action}';
 
     /**
@@ -55,7 +54,6 @@ class MakeRoutesCommand extends Command
             'url' => $this->option('url'),
             'application' => $this->option('application'),
             'controller' => $this->option('controller'),
-            'model' => $this->option('model'),
         ];
 
         $this->info(sprintf('Making routes %s...', $data['name']));

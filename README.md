@@ -73,6 +73,14 @@ With this library you can make the following classes:
 
 All the commands include a `--force` option to overwrite existing classes. Please keep in mind that *with great power comes great responsibility*
 
+#### Customizing code generation
+
+If you want to customize the generated code, you can publish the stubs and then edit them.
+
+```
+php artisan vendor:publish --tag=stubs --provider="FilippoToso\Domain\Support\ServiceProvider"
+```
+
 #### Making models
 
 ```

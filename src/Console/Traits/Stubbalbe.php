@@ -26,7 +26,9 @@ trait Stubbalbe
 
     protected function parseStub($stub, $data)
     {
-        $path = __DIR__ . '/../../../resources/stub/' . $stub . '.stub';
+        $path = base_path('stubs/laravel-domain-library/' . $stub . '.stub');
+        $path = file_exists($path) ? $path : __DIR__ . '/../../../stubs/' . $stub . '.stub';
+
         $content = file_get_contents($path);
 
         $data['object'] = lcfirst($data['model'] ?? null);

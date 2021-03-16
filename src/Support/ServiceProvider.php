@@ -18,6 +18,10 @@ class ServiceProvider extends EventServiceProvider
     {
         parent::boot();
 
+        $this->publishes([
+            __DIR__ . '/../../stubs/' => base_path('stubs/laravel-domain-library')
+        ], 'stubs');
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\SetupStructureCommand::class,
@@ -39,6 +43,7 @@ class ServiceProvider extends EventServiceProvider
                 Classes\MakeSubscriberCommand::class,
                 Classes\MakeExceptionCommand::class,
                 Classes\MakeRoutesCommand::class,
+                Classes\MakeControllerCommand::class,
             ]);
         }
     }
