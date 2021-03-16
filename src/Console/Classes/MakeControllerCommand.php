@@ -117,7 +117,7 @@ class MakeControllerCommand extends Command
             ]);
 
             $this->call('domain:make:action', [
-                'name' => 'Create' . $data['model'] . 'Action',
+                'name' => 'Create' . $data['model'],
                 '--domain' => $data['domain'],
                 '--application' => $data['application'],
                 '--model' => $data['model'],
@@ -125,7 +125,7 @@ class MakeControllerCommand extends Command
             ]);
 
             $this->call('domain:make:action', [
-                'name' => 'Update' . $data['model'] . 'Action',
+                'name' => 'Update' . $data['model'],
                 '--domain' => $data['domain'],
                 '--application' => $data['application'],
                 '--model' => $data['model'],
