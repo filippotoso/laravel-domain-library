@@ -143,6 +143,7 @@ class MakeControllerCommand extends Command
                 '--url' => $data['url'],
                 '--application' => $data['application'],
                 '--controller' => $data['name'],
+                '--model' => $data['model'],
                 '--force' => $data['force'],
             ]);
         }
