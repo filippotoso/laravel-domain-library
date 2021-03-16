@@ -101,7 +101,7 @@ class MakeControllerCommand extends Command
             ]);
 
             $this->call('domain:make:viewmodel', [
-                'name' => $data['model'] . 'FormViewModel',
+                'name' => $data['model'] . 'Form',
                 '--domain' => $data['domain'],
                 '--application' => $data['application'],
                 '--model' => $data['model'],
@@ -109,7 +109,7 @@ class MakeControllerCommand extends Command
             ]);
 
             $this->call('domain:make:viewmodel', [
-                'name' => $data['model'] . 'IndexViewModel',
+                'name' => $data['model'] . 'Index',
                 '--domain' => $data['domain'],
                 '--application' => $data['application'],
                 '--model' => $data['model'],
