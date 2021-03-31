@@ -2,7 +2,7 @@
 
 namespace Domain\{{ domain }}\Events\{{ model }};
 
-use Domain\Invoices\Models\Invoice;
+use Domain\{{ domain }}\Models\{{ model }};
 
 class {{ model }}{{ event }}Event
 {
