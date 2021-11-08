@@ -2,6 +2,8 @@
 
 namespace FilippoToso\Domain\Console\Traits;
 
+use Illuminate\Support\Str;
+
 trait Stubbalbe
 {
     protected function checkRequirement()
@@ -32,6 +34,7 @@ trait Stubbalbe
         $content = file_get_contents($path);
 
         $data['object'] = lcfirst($data['model'] ?? null);
+        $data['objects'] = Str::plural($data['object']);
 
         $search = [];
         $replace = [];

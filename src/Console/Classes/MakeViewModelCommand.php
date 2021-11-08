@@ -20,6 +20,7 @@ class MakeViewModelCommand extends Command
                             {--domain= : The domain name (ie. Invoices)}
                             {--application= : The name of the application (ie. Admin\Invoices)}
                             {--model= : The name of the model (ie. Invoice)}
+                            {--index : Specify to use the viewmodelindex stub}
                             {--force : Overwrite the existing view model}';
 
     /**
@@ -59,7 +60,8 @@ class MakeViewModelCommand extends Command
 
         if (!$this->alreadyExists($data)) {
             $this->info(sprintf('Making view model %sViewModel...', $data['name']));
-            $this->storeStub('viewmodel', $data);
+            $stub = $this->option('index') ? 'viewmodelindex' : 'viewmodel';
+            $this->storeStub($stub, $data);
             $this->info(sprintf('View model %sViewModel successfully made!', $data['name']));
         } else {
             $this->error(sprintf('View model %sViewModel already exists!', $data['name']));

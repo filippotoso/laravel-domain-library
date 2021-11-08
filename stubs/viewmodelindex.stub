@@ -1,0 +1,25 @@
+<?php
+
+namespace App\{{ application }}\ViewModels;
+
+use Domain\{{ domain }}\Models\{{ model }};
+use Spatie\ViewModels\ViewModel;
+
+class {{ name }}IndexViewModel extends ViewModel
+{
+    protected $query;
+    public $appends;
+
+    public function __construct({{ model }}IndexQuery $query)
+    {
+        $this->query = $query;
+        $this->appends = request()->only('filter');
+    }
+
+    public function {{ objects }}()
+    {
+        return $this->query
+            ->paginate()
+            ->appends($this->appends);
+    }
+}
