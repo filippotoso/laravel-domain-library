@@ -5,7 +5,7 @@ namespace App\{{ application }}\ViewModels;
 use Domain\{{ domain }}\Models\{{ model }};
 use Spatie\ViewModels\ViewModel;
 
-class {{ name }}IndexViewModel extends ViewModel
+class {{ name }}ViewModel extends ViewModel
 {
     protected $query;
     public $appends;
