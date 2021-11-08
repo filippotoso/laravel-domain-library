@@ -113,6 +113,15 @@ class MakeControllerCommand extends Command
                 '--domain' => $data['domain'],
                 '--application' => $data['application'],
                 '--model' => $data['model'],
+                '--index' => true,
+                '--force' => $data['force'],
+            ]);
+
+            $this->call('domain:make:viewmodel', [
+                'name' => $data['model'] . 'Index',
+                '--domain' => $data['domain'],
+                '--application' => $data['application'],
+                '--model' => $data['model'],
                 '--force' => $data['force'],
             ]);
 
