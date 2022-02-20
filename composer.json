@@ -2,15 +2,13 @@
     "name": "filippo-toso/laravel-domain-library",
     "description": "Build domain driven applications in Laravel",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Filippo Toso",
-            "email": "filippo@toso.dev"
-        }
-    ],
+    "authors": [{
+        "name": "Filippo Toso",
+        "email": "filippo@toso.dev"
+    }],
     "require": {
         "php": "^7.2.5|^8.0",
-        "illuminate/support": "^8.0",
+        "illuminate/support": "^8.0|^9.0|^10.0",
         "nikic/php-parser": "^4.10",
         "league/flysystem": "^1.1"
     },
