@@ -4,7 +4,7 @@ namespace FilippoToso\Domain\Console\Traits;
 
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
-use League\Flysystem\Adapter\Local;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
 trait Makable
 {
@@ -18,8 +18,8 @@ trait Makable
     protected function copyDirectory($from, $to)
     {
         $this->copyManagedFiles(new MountManager([
-            'from' => new Filesystem(new Local($from)),
-            'to' => new Filesystem(new Local($to)),
+            'from' => new Filesystem(new LocalFilesystemAdapter($from)),
+            'to' => new Filesystem(new LocalFilesystemAdapter($to)),
         ]));
     }
 
@@ -33,7 +33,9 @@ trait Makable
     {
         foreach ($manager->listContents('from://', true) as $file) {
             if ($file['type'] === 'file') {
-                $manager->put('to://' . $file['path'], $manager->read('from://' . $file['path']));
+                $from = $file['path'];
+                $to = str_replace('from://', 'to://', $file['path']);
+                $manager->copy($from, $to);
             }
         }
     }
