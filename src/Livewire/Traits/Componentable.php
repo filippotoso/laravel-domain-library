@@ -21,6 +21,12 @@ trait Componentable
             return parent::validate($field, $rules->rules(), $rules->messages(), $rules->attributes());
         }
 
-        return parent::validateOnly($field, $rules->rules(), $rules->messages(), $rules->attributes());
+        return parent::validateOnly($field, $rules, $messages, $attributes);
+    }
+
+    public static function getName()
+    {
+        $constant = static::class . '::ALIAS';
+        return defined($constant) ? constant($constant) : parent::getName();
     }
 }
