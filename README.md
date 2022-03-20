@@ -22,7 +22,7 @@ The commands prefix is `domain:`.
 Let's start with a clean Laravel installation. From your favorite shell:
 
 ```
-laravel new project
+composer create-project laravel/laravel project
 ```
 
 Then install the library:
