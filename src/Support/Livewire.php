@@ -13,7 +13,7 @@ class Livewire
     /**
      * Automagically registers all the Livewire components in the DDD structure
      *
-     * @param string|null $directory Optional directory. Uses base_path('src/App') by default.
+     * @param array|string|null $directory Optional directories. Uses base_path('src/App') by default.
      * @param string $folder Optional "folder" name to filter files to be processed.
      * @param string $namespace Optional namespace to filter classes.
      * @return void
@@ -22,22 +22,27 @@ class Livewire
     {
         $directory = $directory ?? base_path('src/App');
 
-        $classes = static::files($directory, function ($file) use ($folder) {
-            return strpos($file->getPathname(), DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR) !== false;
-        }, function ($file) use ($directory, $namespace) {
-            $pathname = $file->getPathname();
-            $path = dirname($pathname) . DIRECTORY_SEPARATOR . basename($pathname, '.' . pathinfo($pathname, PATHINFO_EXTENSION));
-            $class = $namespace . '\\' . substr($path, strlen($directory) + 1);
-            $class = str_replace('/', '\\', $class);
-            return $class;
-        });
+        $directories = is_array($directory) ? $directory : [$directory];
 
-        foreach ($classes as $class) {
-            if (
-                is_subclass_of($class, Component::class) ||
-                (is_subclass_of($class, BaseComponent::class) && static::hasTrait($class, Componentable::class))
-            ) {
-                LivewireManager::component($class);
+        foreach ($directories as $directory) {
+
+            $classes = static::files($directory, function ($file) use ($folder) {
+                return strpos($file->getPathname(), DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR) !== false;
+            }, function ($file) use ($directory, $namespace) {
+                $pathname = $file->getPathname();
+                $path = dirname($pathname) . DIRECTORY_SEPARATOR . basename($pathname, '.' . pathinfo($pathname, PATHINFO_EXTENSION));
+                $class = $namespace . '\\' . substr($path, strlen($directory) + 1);
+                $class = str_replace('/', '\\', $class);
+                return $class;
+            });
+
+            foreach ($classes as $class) {
+                if (
+                    is_subclass_of($class, Component::class) ||
+                    (is_subclass_of($class, BaseComponent::class) && static::hasTrait($class, Componentable::class))
+                ) {
+                    LivewireManager::component($class);
+                }
             }
         }
     }
