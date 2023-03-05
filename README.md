@@ -30,7 +30,7 @@ Then install the library:
 ```
 cd project
 composer require filippo-toso/laravel-domain-library
-composer require spatie/data-transfer-object spatie/laravel-model-states spatie/laravel-query-builder spatie/laravel-view-models
+composer require spatie/laravel-data spatie/laravel-model-states spatie/laravel-query-builder spatie/laravel-view-models
 ```
 
 The additional Spatie's packages are required for data transfer objects, model states, query builders and view models.
