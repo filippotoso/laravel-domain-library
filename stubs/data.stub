@@ -1,14 +1,14 @@
 <?php
 
-namespace Domain\{{ domain }}\DataTransferObjects;
+namespace Domain\{{ domain }}\Data;
 
 use App\{{ application }}\Requests\{{ name }}FormRequest;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 
-class {{ name }}Data extends DataTransferObject
+class {{ name }}Data extends Data
 {
     public static function fromRequest({{ name }}FormRequest $request): {{ name }}Data {
-        return new self([
+        return self::from([
             // TODO: Implement this!
         ]);
     } 

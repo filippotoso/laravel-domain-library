@@ -38,7 +38,7 @@ class MakeSuiteCommand extends Command
 
 
     protected $requirements = [
-        \Spatie\DataTransferObject\DataTransferObject::class,
+        \Spatie\LaravelData\Data::class,
         \Spatie\ViewModels\ViewModel::class,
     ];
 

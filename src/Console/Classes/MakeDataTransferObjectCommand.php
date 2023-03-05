@@ -6,7 +6,7 @@ use FilippoToso\Domain\Console\Traits\Makable;
 use FilippoToso\Domain\Console\Traits\Stubbalbe;
 use Illuminate\Console\Command;
 
-class MakeDataTransferObjectCommand extends Command
+class MakeDataCommand extends Command
 {
     use Makable, Stubbalbe;
 
@@ -28,7 +28,7 @@ class MakeDataTransferObjectCommand extends Command
      */
     protected $description = 'Make a data transfer object';
 
-    protected $requirements = [\Spatie\DataTransferObject\DataTransferObject::class];
+    protected $requirements = [\Spatie\LaravelData\Data::class];
 
     /**
      * Create a new command instance.
@@ -57,7 +57,7 @@ class MakeDataTransferObjectCommand extends Command
 
         if (!$this->alreadyExists($data)) {
             $this->info(sprintf('Making data transfer object %sData...', $data['name']));
-            $this->storeStub('datatransferobject', $data);
+            $this->storeStub('data', $data);
             $this->info(sprintf('Data transfer object %sData successfully made!', $data['name']));
         } else {
             $this->error(sprintf('Data transfer object %sData already exists!', $data['name']));
@@ -66,6 +66,6 @@ class MakeDataTransferObjectCommand extends Command
 
     protected function path($data)
     {
-        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/DataTransferObjects/' . $data['name'] . 'Data.php');
+        return base_path('src/Domain/' . str_replace('\\', '/', $data['domain']) . '/Data/' . $data['name'] . 'Data.php');
     }
 }

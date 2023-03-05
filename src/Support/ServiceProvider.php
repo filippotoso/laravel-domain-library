@@ -32,7 +32,7 @@ class ServiceProvider extends EventServiceProvider
                 Classes\MakeViewModelCommand::class,
                 Classes\MakeQueryBuilderCommand::class,
                 Classes\MakeQueryCommand::class,
-                Classes\MakeDataTransferObjectCommand::class,
+                Classes\MakeDataCommand::class,
                 Classes\MakeActionCommand::class,
                 Classes\MakeModelCommand::class,
                 Classes\MakeSuiteCommand::class,

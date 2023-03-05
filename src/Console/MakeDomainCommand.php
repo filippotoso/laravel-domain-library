@@ -44,7 +44,7 @@ class MakeDomainCommand extends Command
         $domain = $this->argument('domain');
 
         $folders = [
-            'Actions', 'QueryBuilders', 'Collections', 'DataTransferObjects',
+            'Actions', 'QueryBuilders', 'Collections', 'Data',
             'Events', 'Exceptions', 'Listeners', 'Models', 'Rules',
             'States', 'Observers', 'Subscribers',
         ];
