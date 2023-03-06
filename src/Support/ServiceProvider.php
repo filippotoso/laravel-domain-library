@@ -45,6 +45,8 @@ class ServiceProvider extends EventServiceProvider
                 Classes\MakeRoutesCommand::class,
                 Classes\MakeControllerCommand::class,
             ]);
+        } else {
+            Blade::registerDomainFolders();
         }
     }
 }
