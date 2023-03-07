@@ -10,12 +10,12 @@ class Blade
 {
     public static function registerDomainFolders()
     {
-        static::register(base_path('src/Support'), 'Support');
+        static::register(base_path('src/Support/View/Components'), 'Support/View/Components');
 
-        $folders = static::directories(base_path('src/Support'));
+        $folders = static::directories(base_path('src/App'));
 
         foreach ($folders as $folder) {
-            static::register($folder, 'App\\' . basename($folder));
+            static::register($folder . '/View/Components', 'App\\' . basename($folder) . '\\View\\Components');
         }
     }
 
@@ -28,12 +28,16 @@ class Blade
      */
     public static function register($directory = null, $namespace = null)
     {
-        $directory = $directory ?? base_path('src/Support');
+        $directory = $directory ?? base_path('src/Support/View/Components');
         $namespace = $namespace ?? 'Support';
 
         $directories = is_array($directory) ? $directory : [$directory];
 
         foreach ($directories as $directory) {
+
+            if (!is_dir($directory)) {
+                continue;
+            }
 
             $classes = static::files($directory, function ($file) use ($directory, $namespace) {
                 $pathname = $file->getPathname();
@@ -51,7 +55,7 @@ class Blade
         }
     }
 
-    protected static function files($directory, $filterCallback = null, $mapperCallback = null)
+    protected static function files($directory, $mapperCallback = null)
     {
         $results = [];
 
@@ -61,11 +65,9 @@ class Blade
             }
 
             if ($file->isDir()) {
-                $results = array_merge($results, static::files($file->getPathname(), $filterCallback, $mapperCallback));
+                $results = array_merge($results, static::files($file->getPathname(), $mapperCallback));
             } else {
-                if (!is_callable($filterCallback) || $filterCallback($file)) {
-                    $results[] = is_callable($mapperCallback) ? $mapperCallback($file) : $file->getPathname();
-                }
+                $results[] = is_callable($mapperCallback) ? $mapperCallback($file) : $file->getPathname();
             }
         }
 
