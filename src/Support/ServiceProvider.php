@@ -18,6 +18,8 @@ class ServiceProvider extends EventServiceProvider
     {
         parent::boot();
 
+        Blade::registerDomainFolders();
+
         $this->publishes([
             __DIR__ . '/../../stubs/' => base_path('stubs/laravel-domain-library')
         ], 'stubs');
@@ -45,8 +47,6 @@ class ServiceProvider extends EventServiceProvider
                 Classes\MakeRoutesCommand::class,
                 Classes\MakeControllerCommand::class,
             ]);
-        } else {
-            Blade::registerDomainFolders();
         }
     }
 }
