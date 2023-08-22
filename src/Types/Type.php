@@ -5,10 +5,10 @@ namespace FilippoToso\Domain\Types;
 class Type
 {
     /**
-     * Staticalli crate a Type
+     * Statically crate a Type
      *
      * @param mixed ...$args
-     * @return void
+     * @return static
      */
     public static function from(...$args)
     {
