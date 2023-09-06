@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ domain }\States;
+namespace Domain\{{ domain }}\States;
 
 class {{ state }} extends {{ model }}State
 {
