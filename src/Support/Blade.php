@@ -59,6 +59,10 @@ class Blade
     {
         $results = [];
 
+        if (!is_dir($directory)) {
+            return $results;
+        }
+
         foreach (new DirectoryIterator($directory) as $file) {
             if ($file->isDot()) {
                 continue;
@@ -77,6 +81,10 @@ class Blade
     protected static function directories($directory)
     {
         $results = [];
+
+        if (!is_dir($directory)) {
+            return $results;
+        }
 
         foreach (new DirectoryIterator($directory) as $file) {
             if ($file->isDot()) {
