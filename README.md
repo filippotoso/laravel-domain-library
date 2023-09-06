@@ -90,7 +90,7 @@ php artisan domain:make:model Invoice --domain=Invoices
 #### Making model's states
 
 ```
-php artisan domain:make:states --model=Invoice --domain=Invoices --states=Paid,Pending,Overdue,Cancelled
+php artisan domain:make:states --model=Invoice --domain=Invoices --states="Paid,Pending,Overdue,Cancelled"
 ```
 
 #### Making model's subscribers
@@ -102,13 +102,13 @@ php artisan domain:make:subscriber --model=Invoice --domain=Invoices
 #### Making model's events
 
 ```
-php artisan domain:make:events --model=Invoice --domain=Invoices --events=saving,created,deleting
+php artisan domain:make:events --model=Invoice --domain=Invoices --events="saving,created,deleting"
 ```
 
 #### Making model's subscribers and events
 
 ```
-php artisan domain:make:subscriber --model=Invoice --domain=Invoices --events=saving,created,deleting
+php artisan domain:make:subscriber --model=Invoice --domain=Invoices --events="saving,created,deleting"
 ```
 
 #### Making model's collections
@@ -168,14 +168,14 @@ php artisan domain:make:suite
     --domain=Invoices 
     --application=Admin\Invoices 
     --model=Invoice 
-    --states=Paid,Pending,Overdue,Cancelled 
-    --events=saving,created,deleting 
-    --dtos=Invoice,CreateInvoice 
+    --states="Paid,Pending,Overdue,Cancelled"
+    --events="saving,created,deleting" 
+    --dtos="Invoice,CreateInvoice"
     --queries=InvoiceIndex 
-    --dtos=Invoice,CreateInvoice 
+    --dtos="Invoice,CreateInvoice"
     --exceptions=InvalidInvoice 
     --queries=InvoiceIndex 
     --requests=Invoice 
     --viewmodels=InvoiceForm 
-    --actions=CreateInvoice,PayInvoice,CancelInvoice    
+    --actions="CreateInvoice,PayInvoice,CancelInvoice"
 ```
