@@ -41,7 +41,7 @@ class Livewire
                     is_subclass_of($class, Component::class) ||
                     (is_subclass_of($class, BaseComponent::class) && static::hasTrait($class, Componentable::class))
                 ) {
-                    LivewireManager::component($class);
+                    LivewireManager::component((new $class)->getName(), $class);
                 }
             }
         }

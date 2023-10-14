@@ -15,16 +15,16 @@ trait Componentable
         return parent::validate($rules, $messages, $attributes);
     }
 
-    public function validateOnly($field, $rules = null, $messages = [], $attributes = [])
+    public function validateOnly($field, $rules = null, $messages = [], $attributes = [], $dataOverrides = [])
     {
         if (is_a($rules, FormRequest::class)) {
             return parent::validate($field, $rules->rules(), $rules->messages(), $rules->attributes());
         }
 
-        return parent::validateOnly($field, $rules, $messages, $attributes);
+        return parent::validateOnly($field, $rules, $messages, $attributes, $dataOverrides);
     }
 
-    public static function getName()
+    public function getName()
     {
         $constant = static::class . '::ALIAS';
         return defined($constant) ? constant($constant) : parent::getName();
