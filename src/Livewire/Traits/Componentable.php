@@ -18,7 +18,7 @@ trait Componentable
     public function validateOnly($field, $rules = null, $messages = [], $attributes = [], $dataOverrides = [])
     {
         if (is_a($rules, FormRequest::class)) {
-            return parent::validate($field, $rules->rules(), $rules->messages(), $rules->attributes());
+            return parent::validateOnly($field, $rules->rules(), $rules->messages(), $rules->attributes());
         }
 
         return parent::validateOnly($field, $rules, $messages, $attributes, $dataOverrides);

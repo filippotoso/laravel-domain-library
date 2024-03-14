@@ -8,6 +8,11 @@ But I'm a lazy coder: I really don't like to write a lot of code. So, I needed a
 - PHP 7.2.5+
 - Laravel 7+
 
+# Laravel 11 support
+
+I'm a little busy in this period. Laravel 11 has some critical changes that impact this package.
+In the next few days I'll try to find the time to make a new major release with full support for Laravel 11.
+
 ## What it does?
 
 It provides:
